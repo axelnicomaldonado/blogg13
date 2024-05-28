@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
 
 /** return view('welcome') devolvería el archivo welcome.blade.php
  *  La ruta de la línea Route::get es la direccion de la URL.
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
  *  
 */
 Route::get('/', function () {
-    return view('home');
+    return view('welcome');    //Cambiar dirección a home cuando esté hecho XD
 });
 
 Route::get('/login', function () {
@@ -37,4 +37,14 @@ Route::get('/category/edit/{id}', function () {
     return view('category.edit');
 });
 
-//Route::get('/user', 'App\Http\Controllers\UserController@__invoke')-> name('user');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
