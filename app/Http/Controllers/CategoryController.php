@@ -6,11 +6,21 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
-    public function __invoke(Request $request)
-    {
-        //
+
+    public function getIndex(){
+        return view('category/index');
     }
+
+    public function getShow($id){
+        return view('category/show', compact('id'));
+    }
+
+    public function getEdit($id){
+        return view('category/edit', compact('id'));
+    }
+
+    public function getCreate(){
+        return view('category/create');
+    }
+
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /** return view('welcome') devolvería el archivo welcome.blade.php
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\Route;
  *  
 */
 Route::get('/', function () {
-    return view('welcome');    //Cambiar dirección a home cuando esté hecho XD
+    return view('welcome');    //Cambiar dirección a home y usar controlador HomeController
 });
 
 Route::get('/login', function () {
@@ -21,21 +22,14 @@ Route::get('/logout', function () {
     return 'Logout usuario';
 });
 
-Route::get('/category', function () {
-    return view('category.index');
-});
+Route::get('/category', [CategoryController::class, 'getIndex']);
 
-Route::get('/category/show/{id}', function () {
-    return view('category.show');
-});
+Route::get('/category/show/{id}', [CategoryController::class, 'getShow']);
 
-Route::get('/category/create', function () {
-    return view('category.create');
-});
+Route::get('/category/create', [CategoryController::class, 'getCreate']);
 
-Route::get('/category/edit/{id}', function () {
-    return view('category.edit');
-});
+Route::get('/category/edit/{id}', [CategoryController::class, 'getEdit']);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
