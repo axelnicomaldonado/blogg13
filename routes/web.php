@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
  *  
 */
 Route::get('/', function () {
-    return view('welcome');    //Cambiar dirección a home y usar controlador HomeController
+    return view('home');    //Cambiar dirección a home y usar controlador HomeController
 });
 
 Route::get('/login', function () {
