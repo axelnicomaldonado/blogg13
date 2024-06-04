@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
@@ -10,9 +11,7 @@ use Illuminate\Support\Facades\Route;
  *  Se pueden ver las rutas creadas con 'php artisan route:list' en la consola.
  *  
 */
-Route::get('/', function () {
-    return view('home');    //Cambiar dirección a home y usar controlador HomeController
-});
+Route::get('/', [HomeController::class, 'getHome']);
 
 Route::get('/login', function () {
     return view('auth.login');
