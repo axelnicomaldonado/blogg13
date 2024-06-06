@@ -28,7 +28,7 @@ Route::get('/category/show/{id}', [CategoryController::class, 'getShow']);
 Route::get('/category/create', [CategoryController::class, 'getCreate']);
 
 Route::get('/category/edit/{id}', [CategoryController::class, 'getEdit']);
-
+Route::put('/category/edit/{id}', [CategoryController::class, 'update']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
