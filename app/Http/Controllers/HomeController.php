@@ -10,8 +10,11 @@ class HomeController extends Controller
     public function getHome(){
         $posts = Post::all();
 
+
         // PARA VER LO QUE RETORNA LA BD:
         //return $posts;
-        return view('/', [compact('posts')]);
+        return view('home', [
+            "posts" => $posts
+        ]);
     }
 }
