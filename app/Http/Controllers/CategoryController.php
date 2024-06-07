@@ -23,6 +23,7 @@ class CategoryController extends Controller
             "post" => $post
         ]);
     }
+    
     public function update(Request $request, $id){
         $post = Post::find($id);
 
@@ -35,10 +36,11 @@ class CategoryController extends Controller
         return redirect('/');
     }
 
-
-
     public function getCreate(){
-        return view('category/create');
+        $posts = Post::all();
+        return view('category/create', [
+            "posts" => $posts
+        ]);
     }
 
 }
