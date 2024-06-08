@@ -5,13 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Category extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'title',
-        'poster',
-        'content',
     ];
+
+    //Relación uno a muchos con Posts.
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
 }
