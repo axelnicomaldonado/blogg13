@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+
 use App\ModelsUser;
 
 use Illuminate\Support\Facades\Storage;
@@ -32,16 +33,26 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-
-        $request->user()->isDirty('username');
-        $request->user()->fill($request->validated());
-
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        $user = $request->user();
+        $user->fill($request->validated());
+    
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
         }
+    
+        if ($request->hasFile('image')) {
 
-        $request->user()->save();
+            $profileImagePath = 'public/imagenes/perfil/' . $user->username;
+            if (Storage::exists($profileImagePath)) {
+                Storage::deleteDirectory($profileImagePath);
+            }
 
+            $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->storeAs('public/imagenes/perfil/' . $user->username, $imageName);
+            $user->image = $imageName;
+        }
+        $user->save();
+    
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
@@ -71,4 +82,5 @@ class ProfileController extends Controller
         $user = User::where('username', $username)->firstOrFail();
         return view('profile.show', compact('user'));
     }
+
 }

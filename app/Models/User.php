@@ -19,6 +19,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'username',
+        'image',
         'email',
         'password',
     ];
@@ -48,6 +49,6 @@ class User extends Authenticatable
 
     //Relación uno a muchos con Posts.
     public function posts(){
-        return $this->hasMany(Post::Class);
+        return $this->hasMany(Post::class);
     }
 }
