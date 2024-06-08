@@ -19,7 +19,7 @@ return new class extends Migration
 
         //Función para modificar las tablas existentes.
         Schema::table('posts', function (Blueprint $table){
-            $table->unsignedBigInteger('category_id')->unique()->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
         });
     }

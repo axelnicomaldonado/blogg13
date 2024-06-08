@@ -15,12 +15,12 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $category = new Category();
-        $category->title = "Juegos";
-        $category->save();
+        Category::factory()->create([
+            'title' => "Juegos",
+        ]);
 
-        $category = new Category();
-        $category->title = "Películas";
-        $category->save();
+        Category::factory()->create([
+            'title' => "Películas",
+        ]);
     }
 }
