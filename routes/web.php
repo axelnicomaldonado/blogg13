@@ -29,11 +29,12 @@ Route::get('/category/show/{id}', [CategoryController::class, 'getShow']);
 Route::get('/category/create', [CategoryController::class, 'getCreate']);
 
 Route::get('/category/edit/{id}', [CategoryController::class, 'getEdit']);
+Route::put('/category/edit/{id}', [CategoryController::class, 'update']);
+
+//Route::delete('/category/delete/{id}', [CategoryController:class, 'disable']) SI QUEDA TIEMPO SE HACE
 
 Route::get('register', [RegisteredUserController::class, 'showRegistrationForm'])->name('register');
 Route::post('register', [RegisteredUserController::class, 'register']);
-
-
 
 
 Route::get('/dashboard', function () {

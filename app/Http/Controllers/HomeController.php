@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function getHome(){
-        $posts = Post::all();
+        $posts = Post::orderBy('id', 'desc')->get();
 
 
         // PARA VER LO QUE RETORNA LA BD:
