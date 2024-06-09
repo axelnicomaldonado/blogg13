@@ -13,40 +13,32 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = new User();
+        User::factory()->create([
+            'name' => "Nico",
+            'username' => "nicodelico",
+            'email' => 'nico@mail.com',
+            'password' => bcrypt('12345678'),
+        ]);
 
-        $user->name = "Nico";
-        $user->username = "nicodelico";
-        $user->email = "correodenico@mail.com";
-        $user->password = bcrypt('12345678');
+        User::factory()->create([
+            'name' => "Juli",
+            'username' => "jota",
+            'email' => 'juli@mail.com',
+            'password' => bcrypt('12345678'),
+        ]);
 
-        $user->save();
+        User::factory()->create([
+            'name' => "Marco",
+            'username' => "elpista",
+            'email' => 'marco@mail.com',
+            'password' => bcrypt('12345678'),
+        ]);
 
-        $user = new User();
-
-        $user->name = "Juli";
-        $user->username = "jota";
-        $user->email = "correodejuli@mail.com";
-        $user->password = bcrypt('12345678');
-
-        $user->save();
-
-        $user = new User();
-
-        $user->name = "Marco";
-        $user->username = "elpista";
-        $user->email = "correodemarco@mail.com";
-        $user->password = bcrypt('12345678');
-
-        $user->save();
-
-        $user = new User();
-
-        $user->name = "Thomas";
-        $user->username = "circa";
-        $user->email = "correodethomas@mail.com";
-        $user->password = bcrypt('12345678');
-
-        $user->save();
+        User::factory()->create([
+            'name' => "Thomas",
+            'username' => "circa",
+            'email' => 'thomas@mail.com',
+            'password' => bcrypt('12345678'),
+        ]);
     }
 }
