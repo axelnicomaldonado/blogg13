@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Edit</title>
-    </head>
-
-    <body>
+<x-app-layout>
+    <div className="volver">
+        <a href="/">
+            <p>volver</p>
+        </a>
+    </div>
+    @if (Auth::user()->id == $post->user_id)
         <header>
             <h1>Blogg13</h1>
         </header>
@@ -35,5 +32,9 @@
                 </div>
             <form>
         </div>
-    </body>
-</html>
+    @else
+        <div classname="divElse">
+            <h2>No podes editar un post que no es tuyo</h2>
+        </div>
+    @endif
+</x-app-layout>
