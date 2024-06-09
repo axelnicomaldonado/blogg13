@@ -35,6 +35,7 @@ class CategoryController extends Controller
         $post->title = $request->title;
         $post->poster = $request->poster;
         $post->content = $request->content;
+        $post->user_id = $request->user_id;
 
         $post->save();
 

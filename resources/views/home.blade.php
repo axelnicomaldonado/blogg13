@@ -21,7 +21,7 @@
                     </div>
                     <div className="botones">
                         <a href="/category/show/{{$post->id}}"><p>Ver post</p></a>
-                        @if(Auth::user()->id == $post->user_id)
+                        @if(Auth::check() && Auth::user()->id == $post->user_id)
                             <a href="/category/edit/{{$post->id}}"><p>Editar post</p></a>
                         @endif
                     </div>
