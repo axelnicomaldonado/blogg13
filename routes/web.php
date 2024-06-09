@@ -23,6 +23,7 @@ Route::get('/logout', function () {
 });
 
 Route::get('/category', [CategoryController::class, 'getIndex'])->name('category');
+Route::get('/category/type/{id}', [CategoryController::class, 'getType']);
 
 Route::get('/category/show/{id}', [CategoryController::class, 'getShow']);
 
