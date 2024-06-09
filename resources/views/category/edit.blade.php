@@ -4,6 +4,7 @@
             <p>volver</p>
         </a>
     </div>
+    @if ($post ==! null)
     @if (Auth::user()->id == $post->user_id)
         <header>
             <h1>Blogg13</h1>
@@ -35,6 +36,11 @@
     @else
         <div classname="divElse">
             <h2>No podes editar un post que no es tuyo</h2>
+        </div>
+    @endif
+    @else
+        <div classname="divElse">
+            <h2>no existe un post con esa id</h2>
         </div>
     @endif
 </x-app-layout>

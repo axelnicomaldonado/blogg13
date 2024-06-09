@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
 
     public function getIndex(){
-        return view('category/index');
+        $categories = Category::all();
+        //return $categories;
+        return view('category/index', [
+            "categories" => $categories
+        ]);
     }
 
     public function getShow($id){
