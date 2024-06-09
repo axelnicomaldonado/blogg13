@@ -17,12 +17,11 @@ return new class extends Migration
             $table->string('poster');
             $table->boolean('habilitated')->default(false);
             $table->text('content');
-            $table->unsignedBigInteger('user_id')->unique()->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade');
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade');
         });
     }
     /**
