@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 /** return view('welcome') devolvería el archivo welcome.blade.php
@@ -28,6 +29,7 @@ Route::get('/category/type/{id}', [CategoryController::class, 'getType']);
 Route::get('/category/show/{id}', [CategoryController::class, 'getShow']);
 
 Route::get('/category/create', [CategoryController::class, 'getCreate']);
+Route::post('/category/create', [CategoryController::class, 'store']);
 
 Route::get('/category/edit/{id}', [CategoryController::class, 'getEdit']);
 Route::put('/category/edit/{id}', [CategoryController::class, 'update']);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -53,11 +54,20 @@ class CategoryController extends Controller
         return redirect('/');
     }
 
-    public function getCreate(){
-        $posts = Post::all();
-        return view('category/create', [
-            "posts" => $posts
+    public function store(Request $request){
+
+        Post::create([
+            'title' => $request->title,
+            'poster' => $request->poster,
+            'content' => $request->content,
+            'user_id' => Auth::id(),
         ]);
+
+        return redirect("/");
+    }
+
+    public function getCreate(){
+        return view('category/create');
     }
 
 }
