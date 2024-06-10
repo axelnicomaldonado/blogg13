@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Nuevo Artículo</title>
-</head>
-<body>
+<x-app-layout>
     <div>
-        <h1>Crear Nuevo Artículo</h1>
+        <h1>Crear nuevo post</h1>
         <form action="/category/create" method="POST">
             @csrf
             <div class="mb-5">
@@ -25,5 +18,4 @@
             <button type="submit" class="inline-block bg-blue-500 text-white px-4 py-2">Guardar</button>
         </form>
     </div>
-</body>
-</html>
+</x-app-layout>
