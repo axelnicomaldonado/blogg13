@@ -29,12 +29,15 @@
                      class="w-full h-full object-cover">
             </div>
         </div>
-    
+        
         <div class="mt-4">
             <x-input-label for="image" :value="__('Foto de perfil')" />
-            <x-text-input id="image" name="image" type="file" class="mt-1 block w-full" accept="image/*" onchange="previewImage(event)" required autofocus autocomplete="image" />
+            <x-text-input id="image" name="image" type="file" class="mt-1 block w-full" accept="image/*" onchange="previewImage(event)" autofocus autocomplete="image" />
             <x-input-error class="mt-2" :messages="$errors->get('image')" />
         </div>
+    
+        <!-- Campo oculto para almacenar el nombre de la imagen actual -->
+        <input type="hidden" name="current_image" value="{{ $user->image }}">
 
         <div>
             <x-input-label for="username" :value="__('Username')" />
