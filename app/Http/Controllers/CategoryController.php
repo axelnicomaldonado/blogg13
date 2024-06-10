@@ -5,11 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\Auth;
-=======
 use App\Models\User;
->>>>>>> 9b7b0cac8b94bec094595c8fe0a7287231fd1bcf
 
 class CategoryController extends Controller
 {
