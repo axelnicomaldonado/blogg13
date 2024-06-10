@@ -1,5 +1,6 @@
 <x-app-layout>
     @if ($post ==! null)
+    @if (Auth::user())
     @if (Auth::user()->id == $post->user_id)
         <x-slot name="header">
             <div class="flex items-center justify-center relative">
@@ -36,12 +37,17 @@
             <form>
         </div>
     @else
-        <div classname="divElse">
+        <div class="mt-10 text-5xl text-gray-800 dark:text-gray-200 text-center">
             <h2>No podes editar un post que no es tuyo</h2>
         </div>
     @endif
     @else
-        <div classname="divElse">
+        <div class="mt-10 text-5xl text-gray-800 dark:text-gray-200 text-center">
+            <h2>Debes registrarte para poder editar un post</h2>
+        </div>
+    @endif
+    @else
+        <div class="mt-10 text-5xl text-gray-800 dark:text-gray-200 text-center">
             <h2>no existe un post con esa id</h2>
         </div>
     @endif

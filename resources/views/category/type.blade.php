@@ -48,7 +48,7 @@
     </div>
 
     @else
-        <div classname="divElse">
+        <div class="mt-10 text-5xl text-gray-800 dark:text-gray-200 text-center">
             <h2>No existe una categoria con el id proporcionado</h2>
         </div>
     @endif
