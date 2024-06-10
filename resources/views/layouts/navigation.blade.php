@@ -22,6 +22,14 @@
                         <x-nav-link :href="route('profile.show', ['username' => Auth::user()->username])" :active="request()->routeIs('profile.show')"> <!-- Elegis la ruta a redireccionar -->
                             {{ __('Perfil') }} <!-- Cambia el nombre del link -->
                         </x-nav-link>
+                    @else 
+                    <x-nav-link :href="route('register')" :active="request()->routeIs('register')"> <!-- Elegis la ruta a redireccionar -->
+                        {{ __('Registrarse') }} <!-- Cambia el nombre del link -->
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('login')" :active="request()->routeIs('login')"> <!-- Elegis la ruta a redireccionar -->
+                        {{ __('Iniciar Sesión') }} <!-- Cambia el nombre del link -->
+                    </x-nav-link>
                     @endif
 
                 </div>
