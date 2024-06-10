@@ -16,44 +16,45 @@
     <div>
     </div>
 
-    <form method="post" action="{{ route('profile.update') }}" enctype="multipart/form-data">
-        @csrf
-        @method('patch')
-
-
-    </form>
-
 
     <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
+
+        <div class="flex items-center justify-center mt-4">
+            <div class="w-32 h-32 rounded-full overflow-hidden border-2 border-gray-300">
+                <img id="image-preview" 
+                     src="{{ $user->image ? asset('storage/imagenes/perfil/' . $user->username . '/' . $user->image) : asset('storage/imagenes/perfil/no-perfil.webp') }}" 
+                     alt="Imagen de perfil" 
+                     class="w-full h-full object-cover">
+            </div>
+        </div>
+    
         <div class="mt-4">
             <x-input-label for="image" :value="__('Foto de perfil')" />
-            <x-text-input id="image" name="image" type="file" class="mt-1 block w-full" :value="old('image', $user->image)"
-                required autofocus autocomplete="image" />
+            <x-text-input id="image" name="image" type="file" class="mt-1 block w-full" accept="image/*" onchange="previewImage(event)" required autofocus autocomplete="image" />
             <x-input-error class="mt-2" :messages="$errors->get('image')" />
-
         </div>
 
         <div>
             <x-input-label for="username" :value="__('Username')" />
-            <x-text-input id="username" name="username" type="text" class="mt-1 block w-full" :value="old('username', $user->username)"
-                required autofocus autocomplete="username" />
+            <x-text-input id="username" name="username" type="text" class="mt-1 block w-full h-8 p-2"
+                :value="old('username', $user->username)" required autofocus autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('username')" />
         </div>
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)"
-                required autofocus autocomplete="name" />
+            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full h-8 p-2"
+                :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
 
         <div>
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)"
-                required autocomplete="username" />
+            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full h-8 p-2 "
+                :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !$user->hasVerifiedEmail())
@@ -86,3 +87,14 @@
         </div>
     </form>
 </section>
+
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var output = document.getElementById('image-preview');
+            output.src = reader.result;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
