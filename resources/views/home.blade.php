@@ -21,11 +21,18 @@
         @foreach ($posts as $post)
             <div class="mt-10 py-8 max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white dark:bg-gray-800 
             overflow-hidden shadow-sm sm:rounded-lg p-6 text-gray-900 dark:text-gray-100">
-                <div class="text-3xl">
+                <div class="text-3xl font-bold">
                     <h3>{{$post->title}}</h3>
                 </div>
+                @foreach($users as $user)
+                    @if($user->id == $post->user_id)
+                        <div class="text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800">
+                            <p>{{$user->username}}</p>
+                        </div>
+                    @endif
+                @endforeach
                 <div className="botones">
-                    <a href="/category/show/{{$post->id}}" class="inline-flex text-blue-400 
+                    <a href="/category/show/{{$post->id}}" class="font-bold inline-flex text-blue-400 
                     px-4 py-2">
                         <p>Ver post</p>
                     </a>

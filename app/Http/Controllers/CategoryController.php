@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\User;
 
 class CategoryController extends Controller
 {
@@ -19,12 +20,15 @@ class CategoryController extends Controller
     public function getType($id){
         $posts = Post::where('category_id', $id)->get();
         $category = Category::find($id);
+        $users = User::all();
 
         //return $posts;
         //return $category;
+        //return $users;
         return view('category/type', [
             "posts" => $posts,
-            "category" => $category
+            "category" => $category,
+            "users" => $users
         ]);
     }
 
