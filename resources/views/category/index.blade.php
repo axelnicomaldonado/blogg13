@@ -10,10 +10,11 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <h1>Listado de categorías:</h1>
+                    <h1 class="text-bold">Listado de categorías:</h1>
                     @foreach($categories as $category)
                     <br/>
-                        <a href="/category/type/{{$category->id}}">
+                        <a href="/category/type/{{$category->id}}" class="font-bold inline-flex text-blue-400 
+                            px-4 py-2">
                             <h1>{{$category->title}}</h1>
                         </a>
                     @endforeach

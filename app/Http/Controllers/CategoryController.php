@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Auth;
+=======
+use App\Models\User;
+>>>>>>> 9b7b0cac8b94bec094595c8fe0a7287231fd1bcf
 
 class CategoryController extends Controller
 {
@@ -20,17 +24,21 @@ class CategoryController extends Controller
     public function getType($id){
         $posts = Post::where('category_id', $id)->get();
         $category = Category::find($id);
+        $users = User::all();
 
         //return $posts;
         //return $category;
+        //return $users;
         return view('category/type', [
             "posts" => $posts,
-            "category" => $category
+            "category" => $category,
+            "users" => $users
         ]);
     }
 
     public function getShow($id){
-        return view('category/show', compact('id'));
+        $post = Post::findOrFail($id);
+        return view('category/show', compact('post'));
     }
 
     public function getEdit($id){
