@@ -17,11 +17,14 @@ class CategoryController extends Controller
         ]);
     }
     public function getType($id){
-        $posts = Post::where('category_id', $id)->first();
+        $posts = Post::where('category_id', $id)->get();
+        $category = Category::find($id);
 
         //return $posts;
+        //return $category;
         return view('category/type', [
-            "posts" => $posts
+            "posts" => $posts,
+            "category" => $category
         ]);
     }
 
