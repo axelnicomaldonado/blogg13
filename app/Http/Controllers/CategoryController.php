@@ -33,7 +33,8 @@ class CategoryController extends Controller
     }
 
     public function getShow($id){
-        return view('category/show', compact('id'));
+        $post = Post::findOrFail($id);
+        return view('category/show', compact('post'));
     }
 
     public function getEdit($id){

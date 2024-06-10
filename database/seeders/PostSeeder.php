@@ -24,7 +24,7 @@ class PostSeeder extends Seeder
 
         Post::factory()->create([
             'title' => "Helldivers 2: La destrucción del planeta Meridia y la creación de un agujero negro.",
-            'poster' => "que se yo que poner acá jaja",
+            'poster' => "helldiverposter.jpg",
             'content' => "El 31 de mayo, se dió la orden suprema de nombre Paz Duradera, la cual consistía en inyectar
             fluido oscuro dentro del planeta colonizado por los termínidos para causar una implosión por la
             densificación del líquido.<br><br>El objetivo se logró con éxito. Sin embargo, al momento de ingresar al juego
