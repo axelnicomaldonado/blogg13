@@ -1,35 +1,37 @@
 <x-app-layout>
-    <div className="volver">
-        <a href="/">
-            <p>volver</p>
-        </a>
-    </div>
     @if ($post ==! null)
     @if (Auth::user()->id == $post->user_id)
-        <header>
-            <h1>Blogg13</h1>
-        </header>
+        <x-slot name="header">
+            <div class="flex items-center justify-center relative">
+                <div>
+                    <h2 class="font-semibold text-3xl text-gray-800 dark:text-gray-200 leading-tight">
+                        {{ __("Editar post") }}
+                    </h2>
+                </div>
+            </div>
+        </x-slot>
         <div className="Formulario">
-            <h3>Editar Post</h3>
             <form action="/category/edit/{{$post->id}}" method="POST">
 
                 @csrf
                 @method('PUT')
-
-                <div className="divTitle">
-                    <label for="title">Titulo</label>
-                    <input className="title" name="title" type="text" value="{{$post->title}}"/>
-                </div>
-                <div className="divPoster">
-                    <label for="poster">Poster</label>
-                    <input className="poster" name="poster" type="text" value="{{$post->poster}}"/>
-                </div>
-                <div className="divContent">
-                    <label for="content">Contenido</label>
-                    <input className="content" name="content" type="text" value="{{$post->content}}"/>
-                </div>
-                <div className="divSubmit">
-                    <input type="submit" value="Hecho">
+                <div class="mt-10 py-8 max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white dark:bg-gray-800 
+                overflow-hidden shadow-sm sm:rounded-lg p-6 text-gray-900 dark:text-gray-100">
+                    <div className="divTitle" class="mb-5">
+                        <label for="title">Titulo</label>
+                        <input className="title" name="title" type="text" value="{{$post->title}}"/>
+                    </div>
+                    <div className="divPoster" class="mb-5">
+                        <label for="poster">Poster</label>
+                        <input className="poster" name="poster" type="text" value="{{$post->poster}}"/>
+                    </div>
+                    <div className="divContent" class="mb-5">
+                        <label for="content">Contenido</label>
+                        <input class="h-20 w-80" name="content" type="text" value="{{$post->content}}"/>
+                    </div>
+                    <div className="divSubmit" class="inline-block bg-blue-500 text-white px-4 py-2">
+                        <input type="submit" value="Hecho">
+                    </div>
                 </div>
             <form>
         </div>

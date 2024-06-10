@@ -37,7 +37,7 @@
                         <p>Ver post</p>
                     </a>
                     @if(Auth::check() && Auth::user()->id == $post->user_id)
-                        <a href="/category/edit/{{$post->id}}" class="inline-flex text-blue-400 
+                        <a href="/category/edit/{{$post->id}}" class="font-bold inline-flex text-blue-400 
                         px-4 py-2">
                             <p>Editar post</p>
                         </a>
