@@ -9,47 +9,62 @@
             </div>
         </div>
     </x-slot>
-
-    <div className="posts">
-        @if(count($posts) ==! 0)
+    <div class="pb-8">
         @foreach ($posts as $post)
-            <div class="mt-10 py-8 max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white dark:bg-gray-800 
-            overflow-hidden shadow-sm sm:rounded-lg p-6 text-gray-900 dark:text-gray-100">
-                <div class="text-3xl font-bold">
-                    <h3>{{$post->title}}</h3>
-                </div>
-                @foreach($users as $user)
-                    @if($user->id == $post->user_id)
-                        <div class="text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800">
-                            <p>{{$user->username}}</p>
-                        </div>
-                    @endif
-                @endforeach
-                <div className="botones">
-                    <a href="/category/show/{{$post->id}}" class="font-bold inline-flex text-blue-400 
-                        px-4 py-2">
-                        <p>Ver post</p>
-                    </a>
-                    @if(Auth::check() && Auth::user()->id == $post->user_id)
-                        <a href="/category/edit/{{$post->id}}"
-                        class="inline-flex text-blue-400 px-4 py-2">
-                            <p>Editar post</p>
+            <div
+                class="mt-10 pt-8 max-w-4xl mx-auto sm:px-6 lg:px-8 bg-white dark:bg-gray-800 
+            overflow-hidden shadow-sm sm:rounded-lg p-6 text-gray-900 dark:text-gray-100 h-80">
+
+
+                <div class="flex">
+                    <div class="container w-xl h-4xl">
+                        <a href="/category/show/{{ $post->id }}">
+                            <img src="{{ asset('storage/imagenes/posts/' . $post->poster) }}"
+                                class="pr-4 bg-cover hover:scale-105">
                         </a>
-                    @endif
+                        @foreach ($users as $user)
+                            @if ($user->id == $post->user_id)
+                            <div class="flex">
+                                <div class="text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 container py-1">
+                                    <a href="/profile/{{ $user->username }}">
+                                        <p class="hover:text-blue-500">{{ $user->username }}</p>
+                                    </a>
+                                </div>
+                                <div class="justify-end container">
+                                    @if (Auth::check() && Auth::user()->id == $post->user_id)
+                                        <a href="/category/edit/{{ $post->id }}"
+                                            class="font-bold inline-flex text-blue-400 px-4 py-1">
+                                            <p>Editar post</p>
+                                        </a>
+                                    @endif
+                                </div>
+                            </div>
+                            @endif
+                        @endforeach
+
+                            <div class="text-gray-500">
+                                <p>{{ $post->created_at }}</p>
+                            </div>
+
+
+                    </div>
+
+                    <div class="justify-start max-w-xl container">
+                        <div class="text-3xl font-bold mb-2">
+                            <a href="/category/show/{{ $post->id }}" class="hover:text-blue-500">
+                                <h3>{{ $post->title }}</h3>
+                            </a>
+                        </div>
+                        <div class="text-4 font-bold line-clamp-6">
+                            <p>{!! $post->content !!} </p>
+                        </div>
+                        <a href="/category/show/{{ $post->id }}" class="text-blue-500">ver mas</a>
+                    </div>
                 </div>
-                <div class="text-gray-500">
-                    <p>{{$post->created_at}}</p>
-                </div>
+
+
             </div>
         @endforeach
-        @else
-            <h2 class="mt-10 text-5xl text-gray-800 dark:text-gray-200 text-center">No hay posts que mostrar</h2>
-        @endif
     </div>
-
-    @else
-        <div class="mt-10 text-5xl text-gray-800 dark:text-gray-200 text-center">
-            <h2>No existe una categoria con el id proporcionado</h2>
-        </div>
     @endif
 </x-app-layout>

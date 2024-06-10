@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\File;
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -35,11 +36,11 @@ class ProfileController extends Controller
     {
         $user = $request->user();
         $user->fill($request->validated());
-    
+
         if ($user->isDirty('email')) {
             $user->email_verified_at = null;
         }
-    
+
         if ($request->hasFile('image')) {
 
             $profileImagePath = 'public/imagenes/perfil/' . $user->username;
@@ -52,7 +53,7 @@ class ProfileController extends Controller
             $user->image = $imageName;
         }
         $user->save();
-    
+
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
@@ -80,7 +81,10 @@ class ProfileController extends Controller
     public function show($username)
     {
         $user = User::where('username', $username)->firstOrFail();
-        return view('profile.show', compact('user'));
-    }
+        $posts = Post::where('user_id', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
 
+        return view('profile.show', compact('user', 'posts'));
+    }
 }

@@ -35,7 +35,7 @@ class CategoryController extends Controller
     }
 
     public function getShow($id){
-        $post = Post::findOrFail($id);
+        $post = Post::with('user')->findOrFail($id);
         return view('category/show', compact('post'));
     }
 

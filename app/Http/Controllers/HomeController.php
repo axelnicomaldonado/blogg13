@@ -9,8 +9,9 @@ use App\Models\User;
 class HomeController extends Controller
 {
     public function getHome(){
-        $posts = Post::orderBy('id', 'desc')->get();
+        $posts = Post::orderBy('created_at', 'desc')->get();
         $users = User::all();
+
 
         // PARA VER LO QUE RETORNA LA BD:
         //return $posts;

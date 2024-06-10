@@ -10,7 +10,7 @@
                         <!-- Columna 1: Imagen de perfil -->
                         <div class="flex items-center justify-center">
                             <div
-                                style="width: 160px; height: 160px; overflow: hidden; border: 2px solid #D1D5DB; border-radius: 50%;">
+                                style="width: 170px; height: 170px; overflow: hidden; border: 2px solid #D1D5DB; border-radius: 50%;">
                                 @if ($user->image)
                                     <img src="{{ asset('storage/imagenes/perfil/' . $user->username . '/' . $user->image) }}"
                                         alt="Imagen de perfil" class="object-cover w-full h-full">
@@ -21,19 +21,72 @@
                             </div>
                         </div>
                         <!-- Columna 2: Username -->
-                        <div class="flex items-start justify-start">
-                            <div style="font-size: 1.5em;">
+                        <div class="flex items-center justify-start h-16">
+                            <div class="text-2xl w-64 break-words">
                                 <h4>{{ $user->username }}</h4>
                             </div>
-                        </div>
-                        <!-- Columna 3: Vacía -->
-                        <div class="flex items-center justify-center">
-                            <p> vacio </p>
+                            <div class="text-2xl mx-16">
+                                <h6 class="">{{ $posts->count() }} publicaciones</h6>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <div class="pb-8">
+                @foreach ($posts as $post)
+                    <div
+                        class="mt-10 pt-8 max-w-4xl mx-auto sm:px-6 lg:px-8 bg-white dark:bg-gray-800 
+                    overflow-hidden shadow-sm sm:rounded-lg p-6 text-gray-900 dark:text-gray-100 h-80">
+        
+        
+                        <div class="flex">
+                            <div class="container w-xl h-4xl">
+                                <a href="/category/show/{{ $post->id }}">
+                                    <img src="{{ asset('storage/imagenes/posts/' . $post->poster) }}"
+                                        class="pr-4 bg-cover hover:scale-105">
+                                </a>
+                                    <div class="flex">
+                                        <div class="text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 container py-1">
+                                            <a href="/profile/{{ $user->username }}">
+                                                <p class="hover:text-blue-500">{{ $user->username }}</p>
+                                            </a>
+                                        </div>
+                                        <div class="justify-end container">
+                                            @if (Auth::check() && Auth::user()->id == $post->user_id)
+                                                <a href="/category/edit/{{ $post->id }}"
+                                                    class="font-bold inline-flex text-blue-400 px-4 py-1">
+                                                    <p>Editar post</p>
+                                                </a>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                            
+                                    <div class="text-gray-500">
+                                        <p>{{ $post->created_at }}</p>
+                                    </div>
+        
+        
+                            </div>
+        
+                            <div class="justify-start max-w-xl container">
+                                <div class="text-3xl font-bold mb-2">
+                                    <a href="/category/show/{{ $post->id }}" class="hover:text-blue-500">
+                                        <h3>{{ $post->title }}</h3>
+                                    </a>
+                                </div>
+                                <div class="text-4 font-bold line-clamp-6">
+                                    <p>{!! $post->content !!} </p>
+                                </div>
+                                <a href="/category/show/{{ $post->id }}" class="text-blue-500">ver mas</a>
+                            </div>
+                        </div>
+        
+        
+                    </div>
+                @endforeach
+            </div>
     </div>
     </div>
     </div>
