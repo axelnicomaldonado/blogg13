@@ -48,46 +48,55 @@ class CategoryController extends Controller
         ]);
     }
     
-    public function update(Request $request, $id)
-{
-    $request->validate([
-        'title' => 'required|string|max:255',
-        'poster' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'content' => 'required|string',
-        'category_id' => 'required|integer',
-    ]);
+public function update(Request $request, $id) {
 
-    $post = Post::findOrFail($id);
-
-    if ($request->file('poster')) {
-        // Elimina la imagen anterior si existe
-        if ($post->poster && file_exists(storage_path('app/public/imagenes/posts/' . $post->poster))) {
-            unlink(storage_path('app/public/imagenes/posts/' . $post->poster));
-        }
+    $post = Post::find($id);
 
 
-        $filePath = $request->file('poster')->storeAs('imagenes/posts', $request->file('poster')->getClientOriginalName(), 'public');
-        $post->poster = $request->file('poster')->getClientOriginalName();
-    } else {
-        // Mantén la imagen actual
-        $post->poster = $request->input('current_poster');
-    }
-
-    // Actualiza otros campos
     $post->title = $request->title;
     $post->content = $request->content;
     $post->category_id = $request->category_id;
+
+
+    if ($request->hasFile('poster')) {
+
+        if ($post->poster) {
+
+            $oldFileName = basename($post->poster);
+
+
+            Storage::delete('public/imagenes/posts/' . $oldFileName);
+        }
+        
+
+            $file = $request->file('poster');
+
+            $destinationPath = public_path('/storage/imagenes/posts');
+
+            $fileName = time() . '_' . $file->getClientOriginalName();
+
+            $file->move($destinationPath, $fileName);
+
+        $post->poster = $fileName;
+    }
+
     $post->save();
 
-    return redirect()->back()->with('success', 'Post actualizado con éxito.');
+    return redirect('/');
 }
+
+
 
     public function store(Request $request){
 
         if ($request->hasFile('poster')) {
+
             $file = $request->file('poster');
+
             $destinationPath = public_path('/storage/imagenes/posts');
+
             $filename = time() . '_' . $file->getClientOriginalName();
+
             $file->move($destinationPath, $filename);
 
         Post::create([
