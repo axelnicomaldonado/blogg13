@@ -40,10 +40,11 @@ class CategoryController extends Controller
     }
 
     public function getEdit($id){
-
+        $categories = Category::all();
         $post = Post::find($id);
         return view('category/edit', [
-            "post" => $post
+            "post" => $post,
+            "categories" => $categories
         ]);
     }
     
