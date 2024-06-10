@@ -14,6 +14,7 @@ class Post extends Model
         'poster',
         'content',
         'user_id',
+        'category_id',
     ];
 
     //Relación uno a muchos inversa con Users.

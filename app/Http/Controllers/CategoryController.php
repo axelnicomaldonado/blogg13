@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -61,18 +62,31 @@ class CategoryController extends Controller
 
     public function store(Request $request){
 
+        if ($request->hasFile('poster')) {
+            $file = $request->file('poster');
+            $destinationPath = public_path('/storage/imagenes/posts');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move($destinationPath, $filename);
+
         Post::create([
-            'title' => $request->title,
-            'poster' => $request->poster,
-            'content' => $request->content,
+            'title' => $request->input('title'),
+            'poster' => $filename,
+            'content' => $request->input('content'),
             'user_id' => Auth::id(),
+            'category_id' => $request->input('category_id'),
         ]);
 
-        return redirect("/");
+        return redirect("/")->with('success', 'Artículo creado con éxito.');
+    } else {
+        return redirect()->back()->with('error', 'No se pudo cargar la imagen.');
+    }
     }
 
     public function getCreate(){
-        return view('category/create');
+        $categories = Category::all();
+        return view('category/create', [
+            "categories" => $categories
+        ]);
     }
 
 }
