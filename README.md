@@ -21,6 +21,7 @@ de los usuarios para ver sus publicaciones en el blog.
 4. Ejecutar el comando `npm install` para instalar las dependencias.
 
 5. Copiar el archivo `.env.example`, pegarlo y cambiar el nombre a `.env`. 
+
     -Un comando útil es `cp .env.example .env`.
 
 6. Ejecutar el comando `php artisan key:generate` para generar una clave para la app.
