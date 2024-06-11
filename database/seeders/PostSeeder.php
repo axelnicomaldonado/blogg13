@@ -41,7 +41,7 @@ class PostSeeder extends Seeder
             lo que decidí probar lo que tiene para ofrecer este soulslike mediterráneo. <br><br>De momento, se
             pueden utilizar cuatro clases de armas diferentes, cada una con una variedad de habilidades únicas,
             así como alternar entre varios tipos de máscaras, un item sumamente importante, ya que cada una
-            posee distintos estilos y habilidades. <br>br>La ambientación y los escenarios están muy bien logrados,
+            posee distintos estilos y habilidades. <br><br>La ambientación y los escenarios están muy bien logrados,
             se capta una atmósfera cautivadora y una representación loquísima del folclore italiano. Existen cuatro
             estados que el jugador puede padecer, algunos dan ventajas, pero sus debilidades son siempre un punto
             negativo presente en todas estas.<br><br>A pesar de estos aspectos, el juego aún cuenta con algunas cosas

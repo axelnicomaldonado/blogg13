@@ -7,12 +7,6 @@ use App\Http\Controllers\CategoryController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
-/** return view('welcome') devolvería el archivo welcome.blade.php
- *  La ruta de la línea Route::get es la direccion de la URL.
- *  return view() es el archivo a retornar dentro de la carpeta view.
- *  Se pueden ver las rutas creadas con 'php artisan route:list' en la consola.
- *  
-*/
 Route::get('/', [HomeController::class, 'getHome'])->name('index');
 
 Route::get('/login', function () {
